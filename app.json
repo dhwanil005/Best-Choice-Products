@@ -1,0 +1,12 @@
+{
+  "name": "navig",
+  "displayName": "navig",
+  "expo": {
+    "name": "navig",
+    "slug": "navig",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
