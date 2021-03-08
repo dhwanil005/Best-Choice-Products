@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import homeScreen from "./pages/HomeScreen";
 import navigationScreen from "./pages/navigationScreen";
 import profileScreen from "./pages/profile";
-import ThirdPage from "./pages/ThirdPage";
+import SignIn from "./pages/SignIn";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +41,14 @@ function App() {
         <Stack.Screen
           name="Profile"
           component={profileScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
           options={{
             headerShown: false,
           }}

@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, Image, StyleSheet, View } from "react-native";
+import { Text, Image, StyleSheet, View, Linking } from "react-native";
 import logo from "../assets/logo.png";
 import { SafeAreaProvider } from "react-native-safe-area-view";
 import { Ionicons } from "@expo/vector-icons";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Octicons } from "@expo/vector-icons";
 import { useState } from "react";
-
+import { Divider } from "react-native-elements";
 export const profileScreen = ({ navigation }) => {
   const uri1 = logo;
   const [searchValue, onSearch] = React.useState("");
@@ -48,7 +48,108 @@ export const profileScreen = ({ navigation }) => {
           style={{ paddingTop: 10, paddingRight: 8 }}
         />
       </View>
-      <View style={{ flex: 25 }}></View>
+      <View
+        style={{
+          flex: 25,
+          flexDirection: "column",
+        }}
+      >
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 30 }}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              paddingBottom: 15,
+            }}
+          >
+            Account
+          </Text>
+          <Divider style={{ backgroundColor: "black" }} />
+        </View>
+
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SignIn");
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                paddingBottom: 15,
+                fontWeight: "200",
+              }}
+            >
+              Sign in
+            </Text>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: "#636e72" }} />
+        </View>
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 20 }}>
+          <TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 18,
+                paddingBottom: 15,
+                fontWeight: "200",
+              }}
+            >
+              Create Account
+            </Text>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: "#636e72" }} />
+        </View>
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL("https://bestchoiceproducts.com/pages/rewards");
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                paddingBottom: 15,
+                fontWeight: "200",
+              }}
+            >
+              Rewards
+            </Text>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: "#636e72" }} />
+        </View>
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 20 }}>
+          <TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 18,
+                paddingBottom: 15,
+                fontWeight: "200",
+              }}
+            >
+              Track Order
+            </Text>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: "#636e72" }} />
+        </View>
+        <View style={{ width: "85%", alignSelf: "center", paddingTop: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL("https://bestchoiceproducts.com/pages/help");
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                paddingBottom: 15,
+                fontWeight: "200",
+              }}
+            >
+              Help center
+            </Text>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: "#636e72" }} />
+        </View>
+      </View>
     </SafeAreaProvider>
   );
 };
