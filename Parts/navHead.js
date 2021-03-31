@@ -19,7 +19,10 @@ const uri = icons;
 const uri1 = logo;
 const NavHead = ({ navigation }) => (
   <View style={styles.header}>
-    <TouchableOpacity style={{ paddingLeft: 10, paddingRight: 10 }}>
+    <TouchableOpacity
+      style={{ paddingLeft: 10, paddingRight: 10 }}
+      onPress={() => navigation.navigate("homeScreen")}
+    >
       <Image source={uri1} style={styles.logo} />
     </TouchableOpacity>
 
@@ -73,7 +76,12 @@ const NavHead = ({ navigation }) => (
         style={{ paddingTop: 3 }}
       />
     </TouchableOpacity>
-    <TouchableOpacity style={{ paddingLeft: 10, paddingRight: 10 }}>
+    <TouchableOpacity
+      style={{ paddingLeft: 10, paddingRight: 10 }}
+      onPress={() => {
+        navigation.navigate("addtocart");
+      }}
+    >
       <Ionicons
         name="cart-outline"
         size={27}
