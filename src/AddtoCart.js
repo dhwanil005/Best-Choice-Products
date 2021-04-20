@@ -29,7 +29,7 @@ function Item({ title, id, pid, price, image, quantity }) {
       <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
         <Image
           source={{ uri: image }}
-          style={{ height: 90, width: 90, marginTop: 30 }}
+          style={{ height: 90, width: 90, marginTop: 30, marginLeft: 10 }}
           resizeMode="contain"
         />
         <Text
@@ -38,12 +38,13 @@ function Item({ title, id, pid, price, image, quantity }) {
             paddingLeft: 25,
             fontSize: 17,
             fontWeight: "300",
+            flexShrink: 1,
           }}
         >
           {title}
         </Text>
         <TouchableOpacity
-          style={{ paddingTop: 40 }}
+          style={{ paddingTop: 40, marginRight: 10 }}
           onPress={() => {
             dispatch(deleteTransactions(id));
           }}

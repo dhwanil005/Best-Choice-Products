@@ -11,7 +11,7 @@ import SignIn from "./src/SignIn";
 import Product from "./src/product";
 import AddtoCart from "./src/AddtoCart";
 import Checkout from "./src/checkout";
-
+import Listings from "./src/Listing";
 //redux
 import { Provider } from "react-redux";
 import { store, persistor } from "./src/store/index";
@@ -91,6 +91,16 @@ function App() {
           <Stack.Screen
             name="checkout"
             component={Checkout}
+            options={{
+              headerShown: false,
+            }}
+          />
+          {
+            //Listings
+          }
+          <Stack.Screen
+            name="listings"
+            component={Listings}
             options={{
               headerShown: false,
             }}

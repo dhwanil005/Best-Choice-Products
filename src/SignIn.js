@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, SafeAreaView, StyleSheet } from "react-native";
+
 import { Divider } from "react-native-elements";
 import icons from "../assets/icons.png";
 import logo from "../assets/logo.png";
@@ -28,9 +22,7 @@ export const SignIn = ({ navigation }) => {
     <SafeAreaProvider forceInset={{ top: "always" }}>
       <NavHead navigation={navigation} />
       <View style={{ flex: 25, paddingTop: 20, flexDirection: "column" }}>
-        <Text style={{ fontSize: 28, fontWeight: "bold", paddingLeft: 10 }}>
-          Account
-        </Text>
+        <Text style={{ fontSize: 28, fontWeight: "bold", paddingLeft: 10 }}>Account</Text>
         <Text
           style={{
             fontSize: 24,
@@ -78,7 +70,7 @@ export const SignIn = ({ navigation }) => {
             fontWeight: "500",
           }}
           placeholder="Password"
-          secureTextEntry="True"
+          secureTextEntry={true}
         />
 
         <TouchableOpacity
@@ -113,21 +105,6 @@ export const SignIn = ({ navigation }) => {
             alignSelf: "center",
             marginTop: 25,
           }}
-        />
-        <LoginButton
-          style={{ marginTop: 40 }}
-          onLoginFinished={(error, result) => {
-            if (error) {
-              console.log("login has error: " + result.error);
-            } else if (result.isCancelled) {
-              console.log("login is cancelled.");
-            } else {
-              AccessToken.getCurrentAccessToken().then((data) => {
-                console.log(data.accessToken.toString());
-              });
-            }
-          }}
-          onLogoutFinished={() => console.log("logout.")}
         />
       </View>
     </SafeAreaProvider>

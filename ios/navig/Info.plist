@@ -63,5 +63,14 @@
 		<string>Torus-DemiSC.otf</string>
 		<string>Torus.otf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>com.bestchoiceproducts.app:/callback</string>
+    </array>
+  </dict>
+</array>
 </dict>
 </plist>

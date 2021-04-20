@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, SafeAreaView, StyleSheet, ActivityIndicator } from "react-native";
+import { LogBox } from "react-native";
+import HTML from "react-native-render-html";
 import icons from "../assets/icons.png";
 import logo from "../assets/logo.png";
 import offer1 from "../assets/offer1.jpeg";
-import categorical from "../assets/categorical.jpeg";
+import categorical1 from "../assets/categorical1.jpeg";
+import categorical2 from "../assets/categorical2.jpeg";
+import categorical3 from "../assets/categorical3.jpeg";
+import categorical4 from "../assets/categorical4.jpeg";
+import categorical5 from "../assets/categorical5.jpeg";
 import { Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-view";
@@ -20,59 +18,119 @@ import { Ionicons } from "@expo/vector-icons";
 import NavHead from "../Parts/navHead";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import StarRating from "react-native-star-rating";
-
+import { ReactLiquid } from "react-liquid";
 export const homeScreen = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
+  const [ids, setIds] = useState([]);
+  let arrArr = [];
+  let fid = "";
   useEffect(() => {
-    fetch(
-      "https://a6145bf28673b70ed8907bc2a317b73e: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@bestchoicep.myshopify.com/admin/api/2021-01/products.json"
-    )
-      .then((response) => response.json())
-      .then((json) => setData(json.products))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+    async function GetProducts() {
+      setLoading(true);
+      LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+      const response = await fetch(
+        "https://0c65ab25784357a1fd65b1762e1daef3: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@bestchoiceproducts.myshopify.com/admin/api/2021-01/collections/135329972302/products.json?fields=id"
+      );
+      const json = await response.json();
+      if (ids.length == 0) {
+        setIds(json.products);
+      }
+
+      arrArr = ids.map((x) => Object.values(x));
+      fid = arrArr.toString();
+
+      const response2 = await fetch("https://0c65ab25784357a1fd65b1762e1daef3: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@bestchoiceproducts.myshopify.com/admin/api/2021-01/products.json?ids=" + fid);
+      const json2 = await response2.json();
+      setData(json2.products);
+    }
+    GetProducts();
+    setLoading(false);
+  }, [ids]);
+
   const offerURI1 = offer1;
-  const cat1 = categorical;
-  const cat2 = categorical;
-  const cat3 = categorical;
-  const cat4 = categorical;
-  const cat5 = categorical;
+  const cat1 = categorical1;
+  const cat2 = categorical2;
+  const cat3 = categorical3;
+  const cat4 = categorical4;
+  const cat5 = categorical5;
 
   return (
-    <SafeAreaProvider
-      forceInset={{ top: "always" }}
-      style={{ backgroundColor: "white" }}
-    >
+    <SafeAreaProvider forceInset={{ top: "always" }} style={{ backgroundColor: "white" }}>
       <NavHead navigation={navigation} />
+
       <View style={{ flex: 25, paddingTop: 20, justifyContent: "center" }}>
         <ScrollView>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "244416905402",
+                  title: "Gardening & Outdoor Decor",
+                })
+              }
+            >
               <Image source={offerURI1} style={styles.offer} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 10 }}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "14051475480",
+                  title: "Raised Garden Beds",
+                })
+              }
+              style={{ paddingTop: 10 }}
+            >
               <Image source={cat1} style={styles.categorical} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 10 }}>
+            <TouchableOpacity
+              style={{ paddingTop: 10 }}
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "14087880728",
+                  title: "Potting Benches",
+                })
+              }
+            >
               <Image source={cat2} style={styles.categorical} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 10 }}>
+            <TouchableOpacity
+              style={{ paddingTop: 10 }}
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "14088175640",
+                  title: "Greenhouses",
+                })
+              }
+            >
               <Image source={cat3} style={styles.categorical} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 10 }}>
+            <TouchableOpacity
+              style={{ paddingTop: 10 }}
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "14051409944",
+                  title: "Garden Planters & Stands",
+                })
+              }
+            >
               <Image source={cat4} style={styles.categorical} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ paddingTop: 10 }}>
+            <TouchableOpacity
+              style={{ paddingTop: 10 }}
+              onPress={() =>
+                navigation.navigate("listings", {
+                  id: "167006175310",
+                  title: "Birs Feeders & Bird Bathes",
+                })
+              }
+            >
               <Image source={cat5} style={styles.categorical} />
             </TouchableOpacity>
           </View>
+
           <View style={{ alignItems: "center", paddingTop: 30 }}>
-            <Text style={{ fontSize: 24, fontWeight: "bold" }}>
-              Shop Best Sellers
-            </Text>
+            <Text style={{ fontSize: 24, fontWeight: "bold" }}>Shop Best Sellers</Text>
           </View>
 
           {isLoading ? (
@@ -96,6 +154,7 @@ export const homeScreen = ({ navigation }) => {
                       price: item.variants[0].price,
                       images: JSON.stringify(item.images),
                       image: item.image.src,
+                      details: item.body_html,
                     })
                   }
                 >
@@ -108,26 +167,8 @@ export const homeScreen = ({ navigation }) => {
                     }}
                     resizeMode="contain"
                   />
-                  <Text style={{ fontSize: 20, fontWeight: "100" }}>
-                    {item.title}
-                  </Text>
-                  <Text style={{ fontSize: 25, color: "red" }}>
-                    ${item.variants[0].price}
-                  </Text>
-                  <View style={{ width: "100%", flexDirection: "row" }}>
-                    <StarRating
-                      disabled={false}
-                      maxStars={5}
-                      rating={2.4}
-                      starSize={20}
-                      emptyStarColor={"#f1c40f"}
-                      starStyle={{ padding: 0 }}
-                      fullStarColor={"#f1c40f"}
-                    />
-                    <Text style={{ fontWeight: "100", paddingLeft: 10 }}>
-                      (385)
-                    </Text>
-                  </View>
+                  <Text style={{ fontSize: 20, fontWeight: "100" }}>{item.title}</Text>
+                  <Text style={{ fontSize: 25, color: "red" }}>${item.variants[0].price}</Text>
                 </TouchableOpacity>
               )}
             />

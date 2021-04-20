@@ -1,15 +1,6 @@
 import React from "react";
 
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Picker,
-  ActivityIndicator,
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, SafeAreaView, StyleSheet, Picker, ActivityIndicator } from "react-native";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "./store/actions/transactionAction";
 import { Platform } from "react-native";
@@ -22,11 +13,11 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import StarRating from "react-native-star-rating";
 import { ListItem } from "react-native-elements";
 import Toast from "react-native-root-toast";
-
+import HTML from "react-native-render-html";
 import { useState, useEffect } from "react";
 
 export const Product = ({ route, navigation }) => {
-  let { pid, title, price, images, image } = route.params;
+  let { pid, title, price, images, image, details } = route.params;
   const dispatch = useDispatch();
   function onSubmit() {
     const id = Math.floor(Math.random() * 400000);
@@ -50,10 +41,7 @@ export const Product = ({ route, navigation }) => {
   const [quantity, setQuantity] = useState(1);
   const img = JSON.parse(images);
   return (
-    <SafeAreaProvider
-      forceInset={{ top: "always" }}
-      style={{ backgroundColor: "white" }}
-    >
+    <SafeAreaProvider forceInset={{ top: "always" }} style={{ backgroundColor: "white" }}>
       <NavHead navigation={navigation} />
 
       <View style={{ flex: 25 }}>
@@ -68,39 +56,17 @@ export const Product = ({ route, navigation }) => {
           >
             {title}
           </Text>
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              paddingTop: 10,
-              paddingLeft: 5,
-            }}
-          >
-            <StarRating
-              disabled={false}
-              maxStars={5}
-              rating={2.3}
-              starSize={20}
-              emptyStarColor={"#f1c40f"}
-              starStyle={{ padding: 0 }}
-              fullStarColor={"#f1c40f"}
-            />
-            <Text style={{ fontWeight: "100", paddingLeft: 10 }}>(385)</Text>
-          </View>
+
           <ScrollView horizontal pagingEnabled style={{ paddingHorizontal: 5 }}>
             {img.map((item) => (
               <View
-                key={item.pid}
+                key={item.id}
                 style={{
                   height: 300,
                   alignItems: "center",
                 }}
               >
-                <Image
-                  source={{ uri: item.src }}
-                  style={{ height: 300, width: 400 }}
-                  resizeMode="contain"
-                />
+                <Image source={{ uri: item.src }} style={{ height: 300, width: 400 }} resizeMode="contain" />
               </View>
             ))}
           </ScrollView>
@@ -172,27 +138,16 @@ export const Product = ({ route, navigation }) => {
               >
                 Description
               </Text>
-              <Text
+              <View
                 style={{
-                  fontSize: 15,
-                  paddingTop: 20,
                   paddingLeft: 20,
-                  paddingRight: 10,
+                  paddingTop: 30,
+                  paddingBottom: 20,
+                  paddingRight: 20,
                 }}
               >
-                SPACIOUS GARDENING BED: Designed with a nearly 4-foot-long bed
-                deep enough to ensure your plants and vegetables can breathe and
-                grow healthy DRAINAGE HOLES: Allows excess water to drain out,
-                keeping soil fresh and preventing plants from overwatering
-                ERGONOMIC STRUCTURE: Stands 30 inches tall, making it perfect
-                for those who struggle to bend down or lean over while gardening
-                VERSATILE DESIGN: Adds a new hint of beauty to any part of your
-                home; perfect for placement on the patio, porch, deck, balcony,
-                or in the garden RAISED GARDEN BED LINER: Separates wood from
-                the soil, keeping wooden garden planter in excellent condition
-                and preventing weeds and pests from interfering with plant
-                growth
-              </Text>
+                <HTML source={{ html: details }} />
+              </View>
             </View>
           </View>
         </ScrollView>

@@ -46,7 +46,7 @@ const NavHead = ({ navigation }) => (
       <Text
         style={{
           fontSize: 16,
-          paddingTop: 8,
+          alignSelf: "center",
           paddingLeft: 5,
           color: "#686868",
         }}
@@ -110,9 +110,11 @@ const styles = StyleSheet.create({
   search: {
     justifyContent: "space-between",
     flexDirection: "row",
-    flex: 4,
+    width: 200,
+    height: 35,
     backgroundColor: "#E0E0E0",
     borderRadius: 10,
+    marginTop: 3,
   },
 });
 

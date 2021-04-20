@@ -79,6 +79,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    OkHttpClientProvider.setOkHttpClientFactory(new UserAgentClientFactory());
     SoLoader.init(this, /* native exopackage */ false);
 
     if (!BuildConfig.DEBUG) {
